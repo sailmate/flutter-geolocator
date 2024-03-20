@@ -84,20 +84,7 @@ class FusedLocationClient implements LocationClient {
   }
 
   private static LocationRequest buildLocationRequest(@Nullable LocationOptions options) {
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-      return buildLocationRequestDeprecated(options);
-    }
-
-    LocationRequest.Builder builder = new LocationRequest.Builder(0);
-
-    if (options != null) {
-      builder.setPriority(toPriority(options.getAccuracy()));
-      builder.setIntervalMillis(options.getTimeInterval());
-      builder.setMinUpdateIntervalMillis(options.getTimeInterval());
-      builder.setMinUpdateDistanceMeters(options.getDistanceFilter());
-    }
-
-    return builder.build();
+    return buildLocationRequestDeprecated(options);
   }
 
   @SuppressWarnings("deprecation")
